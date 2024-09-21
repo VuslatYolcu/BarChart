@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         // Create bar chart
         view.addSubview(barChart)
         barChart.center = view.center
-        
+        barChart.delegate = self
         // Configure the axis
         let xAxis = barChart.xAxis
         let rightAxis = barChart.rightAxis
@@ -58,3 +58,8 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController: ChartViewDelegate {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        print(entry.y)
+    }
+}
