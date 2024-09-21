@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         barChart.xAxis.drawAxisLineEnabled = true
         barChart.xAxis.drawGridLinesEnabled = false
         barChart.xAxis.labelTextColor = .white
+        barChart.xAxis.labelPosition = .bottom
         
         barChart.leftAxis.enabled = true
         barChart.leftAxis.labelTextColor = .white
@@ -43,11 +44,9 @@ class ViewController: UIViewController {
         barChart.center = view.center
         barChart.delegate = self
         // Configure the axis
-        let xAxis = barChart.xAxis
-        let rightAxis = barChart.rightAxis
+       
         
         // Configure legend
-        let legend = barChart.legend
         
         
         // Supply data
@@ -56,7 +55,7 @@ class ViewController: UIViewController {
 
     private func supplyData() {
         var entries = [BarChartDataEntry]()
-        for i in 0 ..< 10 {
+        for i in 0 ..< 13 {
             let chartEntry = BarChartDataEntry(x: Double(i),
                                                y: Double.random(in: 0...30))
             entries.append(chartEntry)
