@@ -13,6 +13,22 @@ class ViewController: UIViewController {
     private lazy var barChart: BarChartView = {
         let barChart = BarChartView(frame: CGRect(x: 0, y: 0, width: Int(view.frame.size.width), height: Int(view.frame.size.width)))
         barChart.translatesAutoresizingMaskIntoConstraints = false
+        barChart.legend.enabled = false
+        
+        barChart.xAxis.enabled = true
+        barChart.xAxis.drawAxisLineEnabled = true
+        barChart.xAxis.drawGridLinesEnabled = false
+        barChart.xAxis.labelTextColor = .white
+        
+        barChart.leftAxis.enabled = true
+        barChart.leftAxis.labelTextColor = .white
+        
+        barChart.rightAxis.enabled = false
+        
+        barChart.legend.enabled = false
+        barChart.chartDescription.enabled = false
+        barChart.gridBackgroundColor = .clear
+    
         return barChart
     }()
     
