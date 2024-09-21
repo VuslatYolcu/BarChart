@@ -13,8 +13,11 @@ class ViewController: UIViewController {
     private lazy var barChart: BarChartView = {
         let barChart = BarChartView(frame: CGRect(x: 0, y: 0, width: Int(view.frame.size.width), height: Int(view.frame.size.width)))
         barChart.translatesAutoresizingMaskIntoConstraints = false
+        
+        barChart.zoom(scaleX: 2, scaleY: 1, x: 0, y: 0)
         barChart.legend.enabled = false
         
+        // Configure the xAxis to be enabled and visible
         barChart.xAxis.enabled = true
         barChart.xAxis.drawAxisLineEnabled = true
         barChart.xAxis.drawGridLinesEnabled = false
@@ -30,6 +33,11 @@ class ViewController: UIViewController {
         barChart.chartDescription.enabled = false
         barChart.gridBackgroundColor = .clear
     
+        barChart.dragEnabled = true
+        barChart.setScaleEnabled(false) // Disable pinch zooming
+        barChart.pinchZoomEnabled = false
+        barChart.doubleTapToZoomEnabled = false
+    
         return barChart
     }()
     
@@ -39,17 +47,12 @@ class ViewController: UIViewController {
     }
     
     private func createChart() {
-        // Create bar chart
+        // Add the barChart to the view
         view.addSubview(barChart)
         barChart.center = view.center
         barChart.delegate = self
-        // Configure the axis
-       
         
-        // Configure legend
-        
-        
-        // Supply data
+        // Supply data to the chart
         supplyData()
     }
 
@@ -69,8 +72,9 @@ class ViewController: UIViewController {
         let data = BarChartData(dataSet: set)
         
         barChart.data = data
+        
+        
     }
-
 }
 
 extension ViewController: ChartViewDelegate {
