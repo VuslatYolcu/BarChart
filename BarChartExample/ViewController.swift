@@ -23,19 +23,19 @@ class ViewController: UIViewController {
     
     private func createChart() {
         // Create bar chart
-        
+        view.addSubview(barChart)
+        barChart.center = view.center
         
         // Configure the axis
+        let xAxis = barChart.xAxis
+        let rightAxis = barChart.rightAxis
         
         // Configure legend
-        
+        let legend = barChart.legend
         
         
         // Supply data
         supplyData()
-        
-        view.addSubview(barChart)
-        barChart.center = view.center
     }
 
     private func supplyData() {
@@ -46,7 +46,11 @@ class ViewController: UIViewController {
             entries.append(chartEntry)
         }
         
-        let set = BarChartDataSet(entries: entries, label: "cost")
+        let set = BarChartDataSet(entries: entries, label: "Cost")
+        set.colors = ChartColorTemplates.colorful()
+        set.colors = [
+            NSUIColor(cgColor: UIColor.systemBlue.cgColor)
+        ]
         let data = BarChartData(dataSet: set)
         
         barChart.data = data
